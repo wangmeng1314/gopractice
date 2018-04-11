@@ -1,0 +1,4 @@
+package: .
+import:
+- package: github.com/gorilla/mux.git
+  version: v1.6.1
