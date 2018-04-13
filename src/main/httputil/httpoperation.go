@@ -9,12 +9,11 @@ import (
 	"strconv"
 	"time"
 	"io/ioutil"
-	"gopractice/src/main/stringutil"
 )
 
 func HandleRequest() {
 	rounter := mux.NewRouter()
-	rounter.HandleFunc("/info/{action}", HandleGet).Methods("GET")
+	rounter.HandleFunc("/info/{action}", HandleGet)
 	rounter.Handle("/handler/{action}", &Example{})
 	http.ListenAndServe(":8080", rounter)
 }
@@ -43,6 +42,7 @@ func ServiceInfo() interface{} {
 	return 1000
 }
 
+//获取一个Grountie的运行时id
 func GoID() int {
 	var buf [64]byte
 	n := runtime.Stack(buf[:], false)
@@ -54,35 +54,3 @@ func GoID() int {
 	return id
 }
 
-//发送GET请求，返回Body中的数据
-func SendGetRequest(url string) string {
-	resp, err := http.Get(url)
-	if nil != err {
-		panic(err)
-	}
-	body, err := ioutil.ReadAll(resp.Body)
-	return stringutil.Byte2Str(body)
-}
-//发送POST请求，返回Body中的数据
-func SendPostRequest (url string) string{
-	resp,err:=http.Post(url,"application/x-www-form-urlencoded",strings.NewReader(""))
-	if err!=nil {
-		panic(err)
-	}
-
-	defer resp.Body.Close()
-
-	body, err := ioutil.ReadAll(resp.Body)
-
-	return stringutil.Byte2Str(body)
-}
-
-func SendRequest(){
-	client:=http.DefaultClient
-	request :=&http.Request{}
-	client.Do(request)
-}
-
-func buildRequest(){
-
-}
