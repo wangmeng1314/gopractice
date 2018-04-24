@@ -1,8 +1,10 @@
 package reflect
 
 import (
-	"reflect"
 	"fmt"
+	"reflect"
+	"io/ioutil"
+	"encoding/json"
 )
 
 type Info struct {
@@ -13,21 +15,30 @@ func (*Info) InvokeMethod() {
 	fmt.Println("test")
 }
 
-func GetType() {
-	info := &Info{"dream"}
+//获取实例的type
+func GetType(interfaceInstance interface{}) reflect.Type {
+	typeOf := reflect.TypeOf(interfaceInstance)
+	return typeOf
+}
 
-	infotype := reflect.TypeOf(info)
-	fmt.Println("string",infotype.Method(0))
+type Infos struct {
+	Ac []Action
+}
 
-	value:=reflect.ValueOf(info)
-	fmt.Println("string",value.Method(0))
+type Action struct {
+	Path        string
+	Handler     string
+	Description string
+}
 
-	for i:=0;i<infotype.NumMethod() ;i++  {
-		println(infotype.Method(i).Name)
+func GetJsonInfo() {
+	bytes, e := ioutil.ReadFile("/Users/fulei.yang/go/src/gopractice/src/main/resources/mvc.json")
+	if e != nil {
+		panic(e)
 	}
 
-	methodRes,err:=infotype.MethodByName("InvokeMethod")
-	println(err)
-	fmt.Println(methodRes)
+	infos := Infos{}
+	json.Unmarshal(bytes, &infos)
+	println(infos.Ac[0].Path)
 
 }
