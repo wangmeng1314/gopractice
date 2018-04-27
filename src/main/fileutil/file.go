@@ -18,7 +18,7 @@ type FileProcessor struct {
 	path string
 }
 //读取文件内容
-func (fprocessor *FileProcessor) readFile() string {
+func (fprocessor *FileProcessor) ReadFile() string {
 	resByte, err := ioutil.ReadFile(fprocessor.path)
 
 	if err != nil {
