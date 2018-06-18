@@ -3,7 +3,7 @@ package httputil
 import (
 	"net/http"
 	"io/ioutil"
-	"gopractice/src/main/stringutil"
+	"gopractice/stringutil"
 	"strings"
 )
 

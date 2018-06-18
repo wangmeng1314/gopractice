@@ -2,7 +2,7 @@ package httputil
 
 import (
 	"net/http"
-	"gopractice/src/main/stringutil"
+	"gopractice/stringutil"
 )
 
 type Example struct {

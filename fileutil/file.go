@@ -2,14 +2,14 @@ package fileutil
 
 import (
 	"io/ioutil"
-	"gopractice/src/main/stringutil"
+	"gopractice/stringutil"
 	"os"
 	"bufio"
 	"io"
 	"strings"
 	"net/url"
 	"fmt"
-	"gopractice/src/main/httputil"
+	"gopractice/httputil"
 	"container/list"
 	"log"
 )
